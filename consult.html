@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="沁春堂国医馆在线问诊：填写问诊单，医师将在 1 个工作日内联系确认就诊时间。">
+    <title>在线问诊 | 沁春堂国医馆</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+    <div class="container site-header__inner">
+        <a class="brand" href="index.html">
+            <span class="brand__mark">沁</span>
+            <span>
+                <span class="brand__name">沁春堂国医馆</span>
+                <span class="brand__sub">中医全科 · 辨证论治</span>
+            </span>
+        </a>
+        <button class="nav-toggle" type="button" aria-label="展开导航菜单" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+        <nav class="site-nav" id="site-nav">
+            <a href="index.html">首页</a>
+            <a href="services.html">特色科室</a>
+            <a href="doctors.html">坐诊医师</a>
+            <a href="constitution.html">体质自测</a>
+            <a href="privacy.html">隐私说明</a>
+            <a href="consult.html" class="nav-cta">在线问诊</a>
+        </nav>
+    </div>
+</header>
+
+<div class="container">
+    <nav class="breadcrumb">
+        <a href="index.html">首页</a><span>在线问诊</span>
+    </nav>
+</div>
+
+<section class="page-hero">
+    <div class="container">
+        <h1 class="page-hero__title">在线问诊</h1>
+        <p class="page-hero__desc">
+            请如实填写问诊单，采集的信息越完整，医师在面诊时越能把时间用在辨证论治上。
+            带 <span style="color:var(--danger);">*</span> 的为必填项，填写通常需要 3 分钟左右。
+        </p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="form-layout">
+
+            <!-- ===== 左侧表单 ===== -->
+            <div class="form-card">
+
+                <!-- 提交成功面板 -->
+                <div class="submit-success" id="submit-success">
+                    <div class="submit-success__icon">✓</div>
+                    <h2 class="submit-success__title">问诊单已提交</h2>
+                    <p class="submit-success__desc">
+                        我们已收到您的信息。前台将在 1 个工作日内与您电话联系，
+                        确认到馆时段或安排线上视频复诊。请留意来电。
+                    </p>
+
+                    <dl class="receipt" id="receipt"></dl>
+
+                    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+                        <button type="button" class="btn btn--ghost" id="print-btn">打印问诊单</button>
+                        <button type="button" class="btn btn--ghost" id="copy-btn">复制问诊单文字</button>
+                        <button type="button" class="btn btn--primary" id="again-btn">再填一份</button>
+                    </div>
+                </div>
+
+                <!-- 表单本体 -->
+                <form id="consult-form" novalidate>
+
+                    <!-- 第一部分：基本信息 -->
+                    <div class="form-section">
+                        <h3 class="form-section__title"><span class="form-section__num">一</span>基本信息</h3>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="name"><span class="req">*</span>姓名</label>
+                                <input class="form-control" type="text" id="name" name="name"
+                                       placeholder="请输入真实姓名" maxlength="20">
+                                <p class="form-error" data-error-for="name">请填写姓名</p>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="gender"><span class="req">*</span>性别</label>
+                                <div class="choice-row">
+                                    <label class="choice">
+                                        <input type="radio" name="gender" value="男">
+                                        <span>男</span>
+                                    </label>
+                                    <label class="choice">
+                                        <input type="radio" name="gender" value="女">
+                                        <span>女</span>
+                                    </label>
+                                    <label class="choice">
+                                        <input type="radio" name="gender" value="其他">
+                                        <span>其他</span>
+                                    </label>
+                                </div>
+                                <p class="form-error" data-error-for="gender">请选择性别</p>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="age"><span class="req">*</span>年龄</label>
+                                <input class="form-control" type="number" id="age" name="age"
+                                       placeholder="周岁" min="0" max="120">
+                                <p class="form-error" data-error-for="age">请填写 0–120 之间的年龄</p>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="phone"><span class="req">*</span>联系电话</label>
+                                <input class="form-control" type="tel" id="phone" name="phone"
+                                       placeholder="用于回电确认，请填 11 位手机号" maxlength="11">
+                                <p class="form-error" data-error-for="phone">请填写 11 位手机号</p>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="dept">希望就诊科室</label>
+                            <select class="form-control" id="dept" name="dept">
+                                <option value="">暂不确定，希望分诊台推荐</option>
+                                <option value="中医内科">中医内科</option>
+                                <option value="中医妇科">中医妇科</option>
+                                <option value="针灸推拿科">针灸推拿科</option>
+                                <option value="中医儿科">中医儿科</option>
+                                <option value="中医皮肤科">中医皮肤科</option>
+                                <option value="治未病中心">治未病中心</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="visit">就诊方式</label>
+                            <div class="choice-row">
+                                <label class="choice">
+                                    <input type="radio" name="visit" value="到馆面诊" checked>
+                                    <span>到馆面诊</span>
+                                </label>
+                                <label class="choice">
+                                    <input type="radio" name="visit" value="线上视频复诊">
+                                    <span>线上视频复诊</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 第二部分：病情描述 -->
+                    <div class="form-section">
+                        <h3 class="form-section__title"><span class="form-section__num">二</span>病情描述</h3>
+
+                        <div class="form-group">
+                            <label class="form-label" for="chief"><span class="req">*</span>主要不适<span class="opt">（最主要、最困扰你的 1–3 个症状）</span></label>
+                            <textarea class="form-control" id="chief" name="chief"
+                                      placeholder="例如：近三个月反复腹泻，晨起加重，伴腹胀，进食生冷后加重，大便每日 2–3 次"></textarea>
+                            <p class="form-hint">请尽量写明部位、性质、加重与缓解因素，这比单纯写"不舒服"更有参考价值。</p>
+                            <p class="form-error" data-error-for="chief">请描述您的主要不适</p>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="duration"><span class="req">*</span>病程</label>
+                                <select class="form-control" id="duration" name="duration">
+                                    <option value="">请选择</option>
+                                    <option value="3天以内">3天以内（急性）</option>
+                                    <option value="1周至1个月">1周至1个月</option>
+                                    <option value="1至6个月">1至6个月</option>
+                                    <option value="半年以上">半年以上（慢性）</option>
+                                    <option value="反复发作多年">反复发作多年</option>
+                                </select>
+                                <p class="form-error" data-error-for="duration">请选择病程</p>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="tongue">舌象<span class="opt">（如曾照过镜子观察过）</span></label>
+                                <input class="form-control" type="text" id="tongue" name="tongue"
+                                       placeholder="例如：舌淡红、苔薄白，或舌胖有齿痕" maxlength="50">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="history">既往病史与用药史</label>
+                            <textarea class="form-control" id="history" name="history"
+                                      placeholder="例如：高血压 5 年，服用氨氯地平；曾有青霉素过敏；无手术外伤史"></textarea>
+                            <p class="form-hint">过敏史请务必写明，这直接关系到医师的用药安全。</p>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">常见伴随症状<span class="opt">（可多选，没有可留空）</span></label>
+                            <div class="choice-row">
+                                <label class="choice"><input type="checkbox" name="symptom" value="畏寒怕冷"><span>畏寒怕冷</span></label>
+                                <label class="choice"><input type="checkbox" name="symptom" value="手足心热"><span>手足心热</span></label>
+                                <label class="choice"><input type="checkbox" name="symptom" value="头晕头胀"><span>头晕头胀</span></label>
+                                <label class="choice"><input type="checkbox" name="symptom" value="失眠多梦"><span>失眠多梦</span></label>
+                                <label class="choice"><input type="checkbox" name="symptom" value="口苦口干"><span>口苦口干</span></label>
+                                <label class="choice"><input type="checkbox" name="symptom" value="食后腹胀"><span>食后腹胀</span></label>
+                                <label class="choice"><input type="checkbox" name="symptom" value="大便稀溏"><span>大便稀溏</span></label>
+                                <label class="choice"><input type="checkbox" name="symptom" value="大便干结"><span>大便干结</span></label>
+                                <label class="choice"><input type="checkbox" name="symptom" value="小便黄少"><span>小便黄少</span></label>
+                                <label class="choice"><input type="checkbox" name="symptom" value="情绪低落"><span>情绪低落</span></label>
+                                <label class="choice"><input type="checkbox" name="symptom" value="关节酸痛"><span>关节酸痛</span></label>
+                                <label class="choice"><input type="checkbox" name="symptom" value="容易疲劳"><span>容易疲劳</span></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 第三部分：预约与确认 -->
+                    <div class="form-section">
+                        <h3 class="form-section__title"><span class="form-section__num">三</span>预约与确认</h3>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="doctor">希望就诊医师</label>
+                                <select class="form-control" id="doctor" name="doctor">
+                                    <option value="">暂无偏好，由分诊台安排</option>
+                                    <option value="周慕青">周慕青（主任中医师）</option>
+                                    <option value="陈砚秋">陈砚秋（副主任中医师）</option>
+                                    <option value="林致远">林致远（针灸推拿科）</option>
+                                    <option value="苏怀瑾">苏怀瑾（中医妇科）</option>
+                                    <option value="郑少康">郑少康（中医儿科）</option>
+                                    <option value="何清远">何清远（中医皮肤科）</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="date">期望就诊日期</label>
+                                <input class="form-control" type="date" id="date" name="date">
+                                <p class="form-hint">最终时段以电话确认为准。</p>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="remark">其他想说明的情况</label>
+                            <textarea class="form-control" id="remark" name="remark"
+                                      placeholder="例如：希望安排在周末上午；行动不便需要轮椅协助"></textarea>
+                        </div>
+
+                        <label class="form-consent">
+                            <input type="checkbox" id="consent" name="consent" value="同意">
+                            <span>
+                                我已阅读并同意<a href="privacy.html" target="_blank">《隐私政策与免责声明》</a>，
+                                同意沁春堂国医馆为本次问诊目的收集和使用上述信息。
+                            </span>
+                        </label>
+                        <p class="form-error" data-error-for="consent">请勾选同意后再提交</p>
+                    </div>
+
+                    <button type="submit" class="btn btn--primary btn--lg btn--block">提交问诊单</button>
+                </form>
+            </div>
+
+            <!-- ===== 右侧信息栏 ===== -->
+            <aside>
+                <div class="aside-card">
+                    <h3 class="aside-card__title">提交后会发生什么</h3>
+                    <ol>
+                        <li>系统立即生成问诊单编号，并显示给您。</li>
+                        <li>前台在 1 个工作日内致电您，确认就诊时间与医师。</li>
+                        <li>到馆后由医师四诊合参，开具处方并给出调养建议。</li>
+                        <li>如需复诊，医师会告知复诊时间与原方是否可续用。</li>
+                    </ol>
+                </div>
+
+                <div class="aside-card">
+                    <h3 class="aside-card__title">填写须知</h3>
+                    <ul class="aside-list">
+                        <li>请如实填写既往病史与过敏史</li>
+                        <li>正在服用西药请一并注明</li>
+                        <li>描述症状时写清"什么时候、什么情况下加重"</li>
+                        <li>如为儿童或老年人，建议由家属代填</li>
+                    </ul>
+                </div>
+
+                <div class="aside-card">
+                    <h3 class="aside-card__title">温馨提示</h3>
+                    <p>
+                        在线问诊单仅用于预约与信息采集，<strong>不构成诊断与处方</strong>。
+                        诊断、处方与治疗方案必须由执业医师面诊后确定。
+                    </p>
+                    <p style="margin-bottom:0;">
+                        如出现高热、意识不清、胸痛、呼吸困难等急症表现，
+                        请立即前往医院急诊，不要等待线上回复。
+                    </p>
+                </div>
+            </aside>
+
+        </div>
+    </div>
+</section>
+
+<footer class="site-footer">
+    <div class="container">
+        <div class="site-footer__grid">
+            <div class="site-footer__brand">
+                <a class="brand" href="index.html" style="margin-bottom:14px;">
+                    <span class="brand__mark">沁</span>
+                    <span>
+                        <span class="brand__name" style="color:var(--text-strong);">沁春堂国医馆</span>
+                        <span class="brand__sub">中医全科 · 辨证论治</span>
+                    </span>
+                </a>
+                <p style="max-width:300px;">
+                    传承中医辨证论治之精髓，以望闻问切四诊合参，
+                    为每位就诊者制定个性化调治方案。
+                </p>
+            </div>
+            <div>
+                <h3 class="site-footer__title">快速导航</h3>
+                <ul class="site-footer__list">
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="services.html">特色科室</a></li>
+                    <li><a href="doctors.html">坐诊医师</a></li>
+                    <li><a href="constitution.html">体质自测</a></li>
+                    <li><a href="consult.html">在线问诊</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="site-footer__title">科室导航</h3>
+                <ul class="site-footer__list">
+                    <li><a href="services.html#internal">中医内科</a></li>
+                    <li><a href="services.html#gyn">中医妇科</a></li>
+                    <li><a href="services.html#acu">针灸推拿科</a></li>
+                    <li><a href="services.html#pedi">中医儿科</a></li>
+                    <li><a href="services.html#prevent">治未病中心</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="site-footer__title">就诊信息</h3>
+                <ul class="site-footer__contact">
+                    <li>门诊地址：××市××区××路 88 号 2 层</li>
+                    <li>门诊时间：周一至周六 8:30–17:30</li>
+                    <li>预约电话：0571-8888 6688</li>
+                    <li>线上问诊：<a href="consult.html">提交问诊单</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="site-footer__bottom">
+            <span>© <span id="year">2026</span> 沁春堂国医馆 本站为示例站点，内容仅供健康科普参考</span>
+            <span>本站内容不构成医疗建议，疾病诊治请以执业医师面诊结论为准</span>
+        </div>
+    </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+<script src="assets/js/consult.js"></script>
+</body>
+</html>
