@@ -17,3 +17,6 @@ z-*.png
 Thumbs.db
 desktop.ini
 .DS_Store
+
+# 内部文档，不发布到线上站点
+进度说明.md
