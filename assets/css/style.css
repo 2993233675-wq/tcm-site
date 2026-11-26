@@ -1920,6 +1920,32 @@ select.form-control option {
     .cta-band__title { font-size: 22px; }
 }
 
+/* =========================================================
+   小程序（web-view）环境适配
+   小程序自带顶部标题栏和底部 tabBar，网页自己的导航栏会叠成两层，
+   所以在微信里运行时隐藏网页导航，改由小程序导航承担。
+   ========================================================= */
+.in-mp .site-header {
+    display: none;
+}
+
+/* 隐藏导航后锚点跳转不再需要预留高度 */
+html.in-mp {
+    scroll-padding-top: 0;
+}
+
+/* 小程序底部有 tabBar，网页页脚的导航分组和它重复，隐藏掉避免两套导航打架 */
+.in-mp .site-footer__grid > div:nth-child(2),
+.in-mp .site-footer__grid > div:nth-child(3) {
+    display: none;
+}
+
+/* 页脚只剩品牌与就诊信息，改成两列 */
+.in-mp .site-footer__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+}
+
 /* ---------- 打印样式：打印问诊单时用浅色，避免浪费墨 ---------- */
 @media print {
     body {

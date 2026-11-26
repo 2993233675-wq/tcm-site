@@ -58,9 +58,21 @@ function initPrint() {
     }
 }
 
+/* ---------- 5. 小程序环境下的链接修正 ---------- */
+function initMpLinks() {
+    if (!document.documentElement.classList.contains('in-mp')) return;
+
+    // web-view 里没有新窗口的概念，target="_blank" 会导致点不动
+    var links = document.querySelectorAll('a[target="_blank"]');
+    Array.prototype.forEach.call(links, function (link) {
+        link.removeAttribute('target');
+    });
+}
+
 document.addEventListener('DOMContentLoaded', function () {
     initNavToggle();
     initActiveNav();
     initYear();
     initPrint();
+    initMpLinks();
 });
