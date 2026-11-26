@@ -1011,6 +1011,135 @@ button {
     line-height: 1.9;
 }
 
+/* 医师详情卡：两位一排，内含坐诊馆、治疗范围分栏 */
+.doctor-grid--wide {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 26px;
+}
+
+.doctor-card--full {
+    display: flex;
+    flex-direction: column;
+}
+
+.doctor-card__head {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 22px 26px;
+    border-bottom: 1px solid var(--line-soft);
+    background-color: rgba(42, 24, 19, .38);
+}
+
+.doctor-card--full .doctor-card__avatar {
+    width: 66px;
+    height: 66px;
+    flex: 0 0 66px;
+    border-radius: 50%;
+    border: 1px solid var(--line-strong);
+    font-size: 30px;
+}
+
+.doctor-card__headtext {
+    min-width: 0;
+}
+
+.doctor-card--full .doctor-card__name {
+    margin-bottom: 4px;
+}
+
+.doctor-card--full .doctor-card__title {
+    margin-bottom: 0;
+}
+
+.doctor-card--full .doctor-card__body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.doctor-card--full .doctor-card__desc {
+    margin-bottom: 18px;
+}
+
+/* 治疗范围：左为科目，右为病种 */
+.doctor-card__scope {
+    margin-bottom: 18px;
+}
+
+.doctor-card__scope--flat {
+    margin-bottom: 18px;
+}
+
+.doctor-card__scope-title {
+    font-family: var(--font-sans);
+    font-size: 12.5px;
+    font-weight: 500;
+    letter-spacing: .12em;
+    color: var(--gold);
+    margin-bottom: 10px;
+}
+
+.scope-list li {
+    display: flex;
+    gap: 12px;
+    padding: 5px 0;
+    font-size: 14px;
+    line-height: 1.75;
+    border-bottom: 1px solid var(--line-soft);
+}
+
+.scope-list li:last-child {
+    border-bottom: none;
+}
+
+.scope-list__key {
+    flex: 0 0 76px;
+    color: var(--text-faint);
+    font-size: 13px;
+}
+
+.scope-list__val {
+    color: var(--text-muted);
+}
+
+.scope-list--plain li {
+    border-bottom: none;
+    padding: 3px 0;
+}
+
+/* 坐诊馆标注 */
+.clinic-row {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding: 3px 0;
+}
+
+.clinic-tag {
+    flex: 0 0 auto;
+    font-size: 12px;
+    padding: 2px 9px;
+    border-radius: 999px;
+    background-color: var(--gold-tint);
+    color: var(--gold-soft);
+    border: 1px solid var(--line-strong);
+}
+
+.clinic-tag--ghost {
+    background-color: transparent;
+    color: var(--text-faint);
+    border-color: var(--line);
+}
+
+.clinic-row__text {
+    color: var(--text-muted);
+}
+
+.clinic-row__text--muted {
+    color: var(--text-faint);
+}
+
 /* 坐诊时间表 */
 .schedule-table {
     width: 100%;
@@ -1704,6 +1833,7 @@ select.form-control option {
     .case-grid,
     .doctor-grid,
     .constitution-grid { grid-template-columns: repeat(2, 1fr); }
+    .doctor-grid--wide { grid-template-columns: 1fr; }
     .step-grid { grid-template-columns: repeat(2, 1fr); }
     .dept { grid-template-columns: 1fr; }
     .dept__side { border-right: none; border-bottom: 1px solid var(--line-soft); }
@@ -1762,6 +1892,7 @@ select.form-control option {
     .service-grid,
     .case-grid,
     .doctor-grid,
+    .doctor-grid--wide,
     .constitution-grid,
     .step-grid,
     .site-footer__grid,
