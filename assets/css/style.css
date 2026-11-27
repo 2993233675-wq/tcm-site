@@ -1441,6 +1441,31 @@ button {
     text-decoration: underline;
 }
 
+/* 小程序内引导面板（腾讯问卷不允许 web-view 内嵌） */
+.mp-booking {
+    text-align: center;
+    padding: 46px 10px 30px;
+}
+
+.mp-booking__title {
+    font-size: 20px;
+    color: var(--text-strong);
+    margin-bottom: 14px;
+}
+
+.mp-booking__desc {
+    font-size: 14.5px;
+    color: var(--text-muted);
+    margin-bottom: 26px;
+    line-height: 1.9;
+}
+
+.mp-booking__phone {
+    margin-top: 20px;
+    font-size: 14px;
+    color: var(--text-faint);
+}
+
 .form-section {
     padding-bottom: 30px;
     margin-bottom: 30px;

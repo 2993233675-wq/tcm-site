@@ -74,6 +74,19 @@
                     </div>
                 </div>
 
+                <!-- 微信小程序内：腾讯问卷禁止在 web-view 里直接访问，引导到小程序原生「预约」页 -->
+                <div class="mp-booking" id="mp-booking-panel" hidden>
+                    <p class="mp-booking__title">在小程序中请使用底部「预约」标签</p>
+                    <p class="mp-booking__desc">
+                        在线预约单在微信小程序中需通过「腾讯问卷」小程序填写，
+                        点击下方按钮前往填写。
+                    </p>
+                    <a class="btn btn--primary btn--block" id="mp-booking-btn" href="javascript:void(0);">前往填写预约单</a>
+                    <p class="mp-booking__phone">
+                        也可直接致电预约：<a href="tel:085127759595">0851-27759595</a>
+                    </p>
+                </div>
+
                 <!-- 第三方在线表单（腾讯问卷/金数据嵌入）：在 site-config.js 配置后显示 -->
                 <div class="form-embed" id="form-embed" hidden>
                     <iframe id="form-embed-frame" title="在线问诊预约表" loading="lazy"

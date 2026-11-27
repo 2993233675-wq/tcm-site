@@ -298,8 +298,43 @@ function fallbackCopy(text, btn, original) {
 }
 
 /* ---------- 11. 第三方在线表单（配置了 formUrl 时替代内置表单） ---------- */
+/* 小程序 web-view 里无法加载腾讯问卷（腾讯问卷会拦截），改为引导到原生「预约」页 */
+function goMiniProgramBooking() {
+    function jump() {
+        try {
+            if (window.wx && wx.miniProgram && wx.miniProgram.switchTab) {
+                wx.miniProgram.switchTab({ url: '/pages/booking/booking' });
+                return;
+            }
+        } catch (e) { /* 忽略 */ }
+        window.location.href = 'tel:085127759595';
+    }
+    if (window.wx && wx.miniProgram) {
+        jump();
+        return;
+    }
+    // web-view 内默认不带微信 JS-SDK，按需加载后再切换 tab
+    var script = document.createElement('script');
+    script.src = 'https://res.wx.qq.com/open/js/jweixin-1.6.0.js';
+    script.onload = jump;
+    script.onerror = jump;
+    document.head.appendChild(script);
+}
+
 document.addEventListener('DOMContentLoaded', function () {
+    var inMp = document.documentElement.classList.contains('in-mp');
     var cfg = window.QCT_CONFIG || {};
+
+    if (inMp) {
+        var mpPanel = document.getElementById('mp-booking-panel');
+        if (mpPanel) mpPanel.hidden = false;
+        if (form) form.style.display = 'none';
+        if (successPanel) successPanel.classList.remove('is-shown');
+        var mpBtn = document.getElementById('mp-booking-btn');
+        if (mpBtn) mpBtn.addEventListener('click', goMiniProgramBooking);
+        return;
+    }
+
     if (cfg.formUrl) {
         var embed = document.getElementById('form-embed');
         var frame = document.getElementById('form-embed-frame');

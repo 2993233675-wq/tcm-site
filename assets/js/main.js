@@ -67,6 +67,38 @@ function initMpLinks() {
     Array.prototype.forEach.call(links, function (link) {
         link.removeAttribute('target');
     });
+
+    // 「在线预约」链接：腾讯问卷不能在 web-view 内嵌，改为切换到小程序原生「预约」页
+    document.addEventListener('click', function (e) {
+        var link = e.target && e.target.closest ? e.target.closest('a[href*="consult.html"]') : null;
+        if (!link) return;
+        e.preventDefault();
+        switchToBookingTab(function () {
+            window.location.href = 'tel:085127759595';
+        });
+    });
+}
+
+/* 切换到小程序「预约」tab；web-view 默认无 JS-SDK，需要时按需加载 */
+function switchToBookingTab(fallback) {
+    function jump() {
+        try {
+            if (window.wx && wx.miniProgram && wx.miniProgram.switchTab) {
+                wx.miniProgram.switchTab({ url: '/pages/booking/booking' });
+                return;
+            }
+        } catch (e) { /* 忽略 */ }
+        if (fallback) fallback();
+    }
+    if (window.wx && wx.miniProgram) {
+        jump();
+        return;
+    }
+    var script = document.createElement('script');
+    script.src = 'https://res.wx.qq.com/open/js/jweixin-1.6.0.js';
+    script.onload = jump;
+    script.onerror = jump;
+    document.head.appendChild(script);
 }
 
 document.addEventListener('DOMContentLoaded', function () {
