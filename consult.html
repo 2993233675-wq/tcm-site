@@ -74,7 +74,17 @@
                     </div>
                 </div>
 
-                <!-- 表单本体 -->
+                <!-- 第三方在线表单（腾讯问卷/金数据嵌入）：在 site-config.js 配置后显示 -->
+                <div class="form-embed" id="form-embed" hidden>
+                    <iframe id="form-embed-frame" title="在线问诊预约表" loading="lazy"
+                            allowtransparency="true" frameborder="0"></iframe>
+                    <p class="form-embed__fallback">
+                        表单加载较慢或未显示时，可
+                        <a id="form-embed-link" href="#" target="_blank" rel="noopener">点此单独打开表单</a>。
+                    </p>
+                </div>
+
+                <!-- 表单本体（未配置第三方表单时显示的演示表单） -->
                 <form id="consult-form" novalidate>
 
                     <!-- 第一部分：基本信息 -->
@@ -264,7 +274,7 @@
                 <div class="aside-card">
                     <h3 class="aside-card__title">提交后会发生什么</h3>
                     <ol>
-                        <li>系统立即生成问诊单编号，并显示给您。</li>
+                        <li>提交成功后，页面会显示确认信息。</li>
                         <li>前台在 1 个工作日内致电您，确认就诊时间与医师。</li>
                         <li>到馆后由医师四诊合参，开具处方并给出调养建议。</li>
                         <li>如需复诊，医师会告知复诊时间与原方是否可续用。</li>
@@ -353,6 +363,7 @@
 </footer>
 
 <script src="assets/js/main.js"></script>
+<script src="assets/js/site-config.js"></script>
 <script src="assets/js/consult.js"></script>
 </body>
 </html>

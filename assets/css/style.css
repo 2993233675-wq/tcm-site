@@ -1411,6 +1411,36 @@ button {
     box-shadow: var(--shadow-sm);
 }
 
+/* 第三方在线表单嵌入（腾讯问卷 / 金数据） */
+.form-card .form-embed {
+    margin: -14px -14px 0;
+}
+
+.form-embed iframe {
+    display: block;
+    width: 100%;
+    height: 5100px;
+    border: 0;
+    border-radius: var(--radius);
+    background-color: #ffffff;
+}
+
+@media (max-width: 760px) {
+    .form-embed iframe { height: 5300px; }
+}
+
+.form-embed__fallback {
+    margin: 12px 0 0;
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-faint);
+}
+
+.form-embed__fallback a {
+    color: var(--gold);
+    text-decoration: underline;
+}
+
 .form-section {
     padding-bottom: 30px;
     margin-bottom: 30px;

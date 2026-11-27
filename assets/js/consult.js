@@ -297,6 +297,23 @@ function fallbackCopy(text, btn, original) {
     setTimeout(function () { btn.textContent = original; }, 2000);
 }
 
+/* ---------- 11. 第三方在线表单（配置了 formUrl 时替代内置表单） ---------- */
+document.addEventListener('DOMContentLoaded', function () {
+    var cfg = window.QCT_CONFIG || {};
+    if (cfg.formUrl) {
+        var embed = document.getElementById('form-embed');
+        var frame = document.getElementById('form-embed-frame');
+        var link = document.getElementById('form-embed-link');
+        if (embed && frame) {
+            frame.src = cfg.formUrl;
+            if (link) link.href = cfg.formUrl;
+            embed.hidden = false;
+            form.style.display = 'none';
+            if (successPanel) successPanel.classList.remove('is-shown');
+        }
+    }
+});
+
 document.addEventListener('DOMContentLoaded', function () {
     var copyBtn = document.getElementById('copy-btn');
 
