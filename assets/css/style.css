@@ -694,6 +694,17 @@ button {
     gap: 24px;
 }
 
+/* 四个科室时用 2×2 排布，避免第二行只剩一张卡片 */
+.service-grid--quad {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 880px;
+    margin: 0 auto;
+}
+
+@media (max-width: 760px) {
+    .service-grid--quad { grid-template-columns: 1fr; }
+}
+
 .service-card {
     background-color: var(--wood-600);
     border: 1px solid var(--line-soft);
