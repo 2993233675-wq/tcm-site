@@ -1032,12 +1032,20 @@ button {
 }
 
 .doctor-card--full .doctor-card__avatar {
-    width: 66px;
-    height: 66px;
-    flex: 0 0 66px;
+    width: 96px;
+    height: 96px;
+    flex: 0 0 96px;
     border-radius: 50%;
     border: 1px solid var(--line-strong);
-    font-size: 30px;
+    font-size: 36px;
+}
+
+/* 医师证件照头像：铺满圆形，略上移让面部居中 */
+.doctor-card__avatar--photo {
+    object-fit: cover;
+    object-position: center 22%;
+    border-bottom: 0;
+    box-shadow: 0 0 0 3px rgba(201, 162, 39, .16);
 }
 
 .doctor-card__headtext {
